@@ -6,7 +6,7 @@
 /*   By: fpinson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 23:19:06 by fpinson           #+#    #+#             */
-/*   Updated: 2017/08/09 16:09:49 by fpinson          ###   ########.fr       */
+/*   Updated: 2017/08/09 18:42:12 by fpinson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,45 @@ int		ft_iterative_factorial(int nb)
 	}
 	return (r);
 }
+int		ft_recursive_factorial(int	nb)
+{
+	if (nb < 0)
+		return (0);
+	if (nb == 0 || nb == 1)
+		return 1;
+	while (nb > 1)
+	{
+		return (nb * ft_recursive_factorial(nb - 1));
+	}
+	return (nb);
+}
+int		ft_iterative_power(int nb, int power)
+{
+	int		res;
 
+	if (power < 0)
+		return 0;
+	while (power > 1)
+	{
+		res = nb * nb;
+		power--;
+	}
+	return (res);
+}
+int		ft_recursive_power(int nb, int power)
+{
+	int		r;
+	if (power < 0)
+		return 0;
+	while (power > 1)
+	{
+		return(nb * ft_recursive_power(nb,power-1));
+	}
+	return (r);
+}
 int		main(void)
 {
-	ft_putnbr(ft_iterative_factorial(5));
+	//ft_putnbr(ft_iterative_factorial(5));
+	//ft_putnbr(ft_recursive_factorial(5));
+	ft_putnbr(ft_recursive_power(5,2));
 }
