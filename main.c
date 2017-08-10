@@ -6,7 +6,7 @@
 /*   By: fpinson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/08 23:19:06 by fpinson           #+#    #+#             */
-/*   Updated: 2017/08/09 18:42:12 by fpinson          ###   ########.fr       */
+/*   Updated: 2017/08/10 16:59:49 by fpinson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		ft_recursive_factorial(int	nb)
 		return (0);
 	if (nb == 0 || nb == 1)
 		return 1;
-	while (nb > 1)
+	if (nb > 1)
 	{
 		return (nb * ft_recursive_factorial(nb - 1));
 	}
@@ -94,7 +94,7 @@ int		ft_iterative_power(int nb, int power)
 
 	if (power < 0)
 		return 0;
-	while (power > 1)
+	while (power > 0)
 	{
 		res = nb * nb;
 		power--;
@@ -103,18 +103,91 @@ int		ft_iterative_power(int nb, int power)
 }
 int		ft_recursive_power(int nb, int power)
 {
-	int		r;
+	int		res;
+
 	if (power < 0)
 		return 0;
+	if ( power == 1)
+		return (nb);
+	if (power == 0)
+		return 1;
 	while (power > 1)
 	{
-		return(nb * ft_recursive_power(nb,power-1));
+		return(nb * ft_recursive_power(nb, (power-1)));
 	}
-	return (r);
+	return (res);
+}
+
+int		ft_fibonacci(int index)
+{
+	int		res;
+
+	if (index < 0)
+		return (-1);
+	if (index == 0)
+		res = 0;
+	if (index == 1)
+		res = 1;
+	while (index > 1)
+	{
+		return (res = ft_fibonacci(index - 1) + ft_fibonacci(index - 2));
+	}
+	return (res);
+}
+int		ft_sqrt(int nb)
+{
+	int res;
+
+	res = 0;
+	if (nb == 0)
+		return (0);
+	if (nb == 1)
+		return 1;
+	while ( res < (nb/2))
+	{
+		res++;
+		if( res * res == nb)
+			return (res);
+	}
+	return (0);
+}
+
+int		ft_is_prime(int nb)
+{
+	int i;
+
+	i = 0;
+	if (nb == 0 || nb == 1)
+		return (0);
+	while (i < (nb / 2))
+	{
+			i++;
+		if ( nb % i == 0 && (nb / 2) > i && i != 1)
+			return (0);
+	}
+	return (1);
+}
+int		ft_find_next_prime(int nb)
+{
+	
+	int i;
+
+	i = 0;
+	if (nb == 0 || nb == 1)
+		return (3);
+	while (i < (nb / 2))
+	{
+			i++;
+		if ( nb % i == 0 && (nb / 2) > i && i != 1)
+			return ft_find_next_prime(nb + 1);
+	}
+	return (nb);
 }
 int		main(void)
 {
 	//ft_putnbr(ft_iterative_factorial(5));
 	//ft_putnbr(ft_recursive_factorial(5));
-	ft_putnbr(ft_recursive_power(5,2));
+	//ft_putnbr(ft_recursive_power(5,2));
+	//ft_putnbr(ft_sqrt(2147483647));
+	ft_putnbr(ft_find_next_prime(35));
 }
